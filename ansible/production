@@ -1,0 +1,12 @@
+[cdh_cluster_servers]
+cdh01
+cdh02
+cdh03
+
+[cms_server]
+cdh00
+
+[production:children]
+cdh_cluster_servers
+cms_server
+

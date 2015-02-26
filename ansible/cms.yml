@@ -1,0 +1,6 @@
+- hosts: cms_server
+  sudo: yes
+  roles:
+    - common
+    - cms
+

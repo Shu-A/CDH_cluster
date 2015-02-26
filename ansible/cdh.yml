@@ -1,0 +1,6 @@
+- hosts: cdh_cluster_servers
+  sudo: yes
+  roles:
+    - common
+    - cdh
+
