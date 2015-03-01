@@ -1,0 +1,4 @@
+# Vagrant hidden directory
+.tmp
+.vagrant
+.env
