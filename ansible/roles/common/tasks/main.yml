@@ -10,3 +10,18 @@
 - name:   Create /etc/hosts file
   template: src=hosts.j2 dest=/etc/hosts mode=0644
 
+- name:   Install parted
+  yum: name=parted state=latest
+
+- name:   Check partition existence
+  shell: fdisk -l /dev/sdb1
+
+- name:   Make a partition
+  shell: parted -s -a optimal /dev/sdb mklabel gpt -- mkpart primary ext4 0% 100%
+
+- name:   Format the partition, make directory '/opt/cloudera' and mount
+  shell: mkfs.ext4 /dev/sdb1 && mkdir /opt/cloudera && mount /dev/sdb1 /opt/cloudera
+
+- name:   Add mounting of '/opt/cloudera'
+  shell: echo "/dev/sdb1 /opt/cloudera ext4 defaults 0 0" >> /etc/fstab
+

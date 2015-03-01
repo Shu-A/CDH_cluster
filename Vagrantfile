@@ -12,7 +12,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         c.vm.network :forwarded_port, guest: 7180, host: 7180, id: "scm"
         c.vm.provider :virtualbox do |v|
             v.name = "cdh00"
-            v.memory = 512
+            v.memory = 1024
+
+            file_to_disk = "./.tmp/disk_" + c.vm.hostname + ".vdi"
+            unless File.exist?(file_to_disk)
+                v.customize ['createhd', '--filename', file_to_disk, '--size', 10 * 1024]
+                v.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+            end
         end
     end
  

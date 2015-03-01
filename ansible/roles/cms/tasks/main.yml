@@ -1,5 +1,9 @@
-- name:   Install wget
-  yum: name=wget state=latest
+#- name:   Install wget
+#  yum: name=wget state=latest
 
 - name:   Get Cloudera Manager installer script
-  shell: wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin && chmod u+x cloudera-manager-installer.bin
+  get_url: url=http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin dest=/tmp/cloudera-manager-installer.bin
+
+#-  name:   Execute Cloudera Manager Installer
+#   shell: ./cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt -noreadme
+
