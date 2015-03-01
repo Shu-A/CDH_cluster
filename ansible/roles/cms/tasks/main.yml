@@ -1,9 +1,13 @@
-#- name:   Install wget
-#  yum: name=wget state=latest
+- name:   Deploy ssh key
+  copy: src=.ssh/google_compute_engine dest=~/.ssh/id_rsa mode=600
+  sudo: no
 
 - name:   Get Cloudera Manager installer script
   get_url: url=http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin dest=/tmp/cloudera-manager-installer.bin
 
-#-  name:   Execute Cloudera Manager Installer
-#   shell: ./cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt -noreadme
+- name:   Change mod 755 to binary script
+  shell: chmod 755 /tmp/cloudera-manager-installer.bin
+
+#- name:   Execute Cloudera Manager Installer
+#  shell: /tmp/cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt -noreadme
 

@@ -5,3 +5,9 @@
 
 # Git hidden files
 .git
+
+# Service account key of Google Compute Platform 
+.gcp_service_accout_key
+
+# SSH key directory
+ansible/.ssh

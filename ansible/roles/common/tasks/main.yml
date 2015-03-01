@@ -1,27 +1,30 @@
 - name:   Disable iptables
   service: name=iptables state=stopped enabled=no
 
-- name:   Stop SELinux
-  shell: setenforce 0
-  ignore_errors: True
+- name:   Install libselinux-python package
+  yum: name=libselinux-python state=latest  
 
 - name:   Disable SELinux
-  lineinfile: dest=/etc/sysconfig/selinux regexp="^SELINUX=.*" line="SELINUX=disabled"
-- name:   Create /etc/hosts file
-  template: src=hosts.j2 dest=/etc/hosts mode=0644
+  selinux: state=disabled
 
-- name:   Install parted
-  yum: name=parted state=latest
+- name:   Restart machine
+  shell: shutdown -r now "Ansible updates triggered"
 
-- name:   Check partition existence
-  shell: fdisk -l /dev/sdb1
+- name:   Waiting for server to come back
+  local_action: wait_for host={{ inventory_hostname }} state=started timeout=120
+  sudo: no
 
-- name:   Make a partition
-  shell: parted -s -a optimal /dev/sdb mklabel gpt -- mkpart primary ext4 0% 100%
+#- name:   Stop SELinux
+#  shell: setenforce 0
 
-- name:   Format the partition, make directory '/opt/cloudera' and mount
-  shell: mkfs.ext4 /dev/sdb1 && mkdir /opt/cloudera && mount /dev/sdb1 /opt/cloudera
+#- name:   Disable SELinux
+#  lineinfile: dest=/etc/sysconfig/selinux regexp="^SELINUX=.*" line="SELINUX=disabled"
 
-- name:   Add mounting of '/opt/cloudera'
-  shell: echo "/dev/sdb1 /opt/cloudera ext4 defaults 0 0" >> /etc/fstab
+#- name:   Copy ssh public key
+#  copy: src=.ssh/id_rsa.pub dest=/tmp/id_rsa.pub
+#  sudo: no
+
+#- name:   Append authorized_keys
+#  shell: cat /tmp/id_rsa.pub >> ~/.ssh/authorized_keys
+#  sudo: no
 

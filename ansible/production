@@ -1,10 +1,10 @@
 [cdh_cluster_servers]
-cdh01
-cdh02
-cdh03
+shua-cdh1
+shua-cdh2
+shua-cdh3
 
 [cms_server]
-cdh00
+shua-cdh0
 
 [production:children]
 cdh_cluster_servers
