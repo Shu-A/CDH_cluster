@@ -1,0 +1,7 @@
+# Vagrant hidden files
+.vagrant
+.tmp
+.env
+
+# Git hidden files
+.git
