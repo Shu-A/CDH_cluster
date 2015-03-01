@@ -7,7 +7,7 @@
 .git
 
 # Service account key of Google Compute Platform 
-.gcp_service_accout_key
+.gcp_service_account_key
 
 # SSH key directory
 ansible/.ssh
