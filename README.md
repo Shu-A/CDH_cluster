@@ -1,8 +1,9 @@
 # CDH_cluster
 Make CDH cluster environment with ansible.
 
-## Install GCP vagrant puglin
+## Install dotenv and gcp vagrant puglin
 ```
+$ vagrant plugin install dotenv
 $ vagrant plugin install vagrant-google
 ```
 
