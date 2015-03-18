@@ -5,6 +5,3 @@
 
 # Git hidden files
 .git
-
-# Private keys
-*.p12
