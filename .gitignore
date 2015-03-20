@@ -11,3 +11,6 @@
 
 # SSH key directory
 ansible/.ssh
+
+# Virtualenv
+env
