@@ -1,4 +1,4 @@
-# CDH_cluster
+# CDH_cluster for Google Compute Engine
 Make CDH cluster environment with ansible.
 
 ## Vagrant version
@@ -21,4 +21,10 @@ $ vagrant plugin install vagrant-google
 $ GOOGLE_CLOUD_PROJECT_ID=xxx
 $ SERVICE_ACCOUNT_EMAIL_ADDRESS=xxx
 $ PATH_TO_YOUR_PRIVATE_KEY=xxx
+```
+## Execution
+```
+$ vagrant up --provider=google
+$ vagrant ssh-config >> ~/.ssh/config
+$ ansible-playbook -i ansible/production ansible/site.yml
 ```
