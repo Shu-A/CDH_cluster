@@ -28,3 +28,13 @@ $ vagrant up --provider=google
 $ vagrant ssh-config >> ~/.ssh/config
 $ ansible-playbook -i ansible/production ansible/site.yml
 ```
+### Install Cloudera Manager
+```
+$ ssh shua-cdh0
+```
+
+On shua-cdh0...
+
+```
+$ sudo ./cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt --noreadme
+```
